@@ -10,7 +10,7 @@ export const POST: RequestHandler = async ({ request }) => {
   try {
     const body = await request.json();
     const referralId = body.referral || 'no-referral';
-
+console.log('Referral ID ID:', referralId);
     const session = await stripe.checkout.sessions.create({
     
       success_url: 'https://checkout-theta-three.vercel.app/success',
@@ -28,8 +28,8 @@ export const POST: RequestHandler = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' }
     });
 
-  } catch (err) {
-    console.error('Stripe error:', err);
+  } catch (err:any) {
+     console.error('Stripe error:', err.message, err.stack);
     return new Response(JSON.stringify({ error: 'Something went wrong' }), {
       status: 500
     });
