@@ -6,7 +6,11 @@
 
     const referralId = window.promotekit_referral || null;
 console.log('Referral ID:', referralId);
+console.log('window.promotekit_referral',window.promotekit_referral);
     try {
+
+ await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
