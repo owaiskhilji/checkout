@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY, {
-    apiVersion: import.meta.env.VITE_STRIPE_API_VERSION || '2025-05-28.basil',
+    apiVersion: '2022-11-15',
     typescript: true, 
 });
 
@@ -13,7 +13,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
     const session = await stripe.checkout.sessions.create({
     
-      success_url: 'https://checkout-theta-three.vercel.app/sucess',
+      success_url: 'https://checkout-theta-three.vercel.app/success',
   cancel_url: 'https://checkout-theta-three.vercel.app/cancel',
     metadata: {
         promotekit_referral: referralId,
