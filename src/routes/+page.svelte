@@ -5,7 +5,7 @@
     loading = true;
 
     const referralId = window.promotekit_referral || null;
-
+console.log('Referral ID:', referralId);
     try {
       const res = await fetch('/api/checkout', {
         method: 'POST',
