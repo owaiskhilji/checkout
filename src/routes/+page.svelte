@@ -1,18 +1,16 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   let loading = false;
-  let referralId: string | null = null;
-
-  onMount(() => {
-    const params = new URLSearchParams(window.location.search);
-    referralId = params.get('ref');
-    console.log('Referral ID:', referralId); // check karne ke liye
-  });
 
   async function handleCheckout() {
     loading = true;
 
+    const referralId = window.promotekit_referral || null;
+console.log('Referral ID:', referralId);
+console.log('window.promotekit_referral',window.promotekit_referral);
     try {
+
+ await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,12 +28,12 @@
       }
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching referral ID:', error);
       loading = false;
+      return;
     }
   }
-</script>
-
+</script> 
 
 <svelte:head>
   <script async src="https://cdn.promotekit.com/promotekit.js" data-promotekit="56e1b243-e4f1-416d-a752-9c9552d337f4"></script>

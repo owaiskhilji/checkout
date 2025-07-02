@@ -13,8 +13,8 @@ export const POST: RequestHandler = async ({ request }) => {
 console.log('Referral ID ID:', referralId);
     const session = await stripe.checkout.sessions.create({
     
-      success_url: 'https://checkout-theta-three.vercel.app/success',
-  cancel_url: 'https://checkout-theta-three.vercel.app/cancel',
+      success_url: 'https://checkout-ref.vercel.app/success',
+  cancel_url: 'https://checkout-ref.vercel.app/cancel',
     metadata: {
         promotekit_referral: referralId,
     },
